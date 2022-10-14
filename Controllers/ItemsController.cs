@@ -1,3 +1,5 @@
+using Exam.NET.Dtos;
+using Exam.NET.Entities;
 using Exam.NET.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +20,15 @@ namespace Exam.NET.Controllers
 
         //ADD
         [HttpPost]
-        public ActionResult<ItemDto> AddItem()
+        public ActionResult<ItemDto> AddItem(CreateItemDto itemDto)
         {
-
+            Item item = new(){
+                Id = Guid.NewGuid(),
+                Name = itemDto.Name,
+                UserType = itemDto.UserType,
+                Email = itemDto.Email,
+                Phone = itemDto.Phone
+            };
         }
 
         //GET
@@ -44,7 +52,7 @@ namespace Exam.NET.Controllers
         [HttpDelete("{id}")]
         public ActionResult<ItemDto> DeleteItem();
         {
-            
+
         }
 
 
